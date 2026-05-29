@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage';
 import ServicePage from './pages/ServicePage';
 import OurWorkPage from './pages/OurWorkPage';
 import ReviewsPage from './pages/ReviewsPage';
+import FloatingContactForm from './components/FloatingContactForm';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -52,6 +53,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <FloatingContactForm />
     </div>
   );
 }
