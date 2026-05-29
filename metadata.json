@@ -1,0 +1,6 @@
+{
+  "name": "Battalion Tree Service",
+  "description": "Professional tree removal, trimming, and emergency services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
