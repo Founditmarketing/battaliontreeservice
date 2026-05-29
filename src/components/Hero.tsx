@@ -12,6 +12,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -50,18 +51,27 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   return (
     <section className="relative min-h-[90vh] flex pt-24 pb-0 overflow-hidden">
       {/* Background Video & Overlay */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 overflow-hidden bg-black">
         <video 
           ref={videoRef}
           autoPlay 
           loop 
           muted 
           playsInline 
+          onPlaying={() => setIsVideoPlaying(true)}
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/battalionherovideo.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 z-10"></div>
+        
+        {/* Fallback Image */}
+        <div 
+          className={`absolute inset-0 transition-opacity duration-1000 pointer-events-none z-[5] ${isVideoPlaying ? 'opacity-0' : 'opacity-100'}`}
+        >
+          <img src="/battalionaboutimage.jpeg" alt="Battalion Tree Service" className="w-full h-full object-cover" />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20 z-10 pointer-events-none"></div>
       </div>
 
       <div className={`w-full flex-1 flex flex-col justify-end relative transition-all duration-[1500ms] ease-out delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
