@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Facebook, ArrowDown } from 'lucide-react';
 
@@ -12,6 +12,13 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(e => console.log("Video auto-play blocked:", e));
+    }
+  }, []);
 
   useEffect(() => {
     const word = WORDS[currentWordIndex];
@@ -45,6 +52,7 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
       {/* Background Video & Overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 
@@ -80,7 +88,10 @@ export default function Hero({ isLoaded = true }: { isLoaded?: boolean }) {
             </p>
             
             <h1 className="text-5xl md:text-7xl lg:text-7xl font-bold text-white leading-[1.1] mb-8 font-sans">
-              Expert tree care building new standards of safety and <br className="md:hidden" /><span className="text-brand-red inline-block min-h-[1em]">{currentText}<span className="animate-pulse">|</span></span>
+              <span className="hidden md:inline">Expert tree care building new standards of safety and </span>
+              <span className="md:hidden">Expert tree care with </span>
+              <br className="md:hidden" />
+              <span className="text-brand-red inline-block min-h-[1em]">{currentText}<span className="animate-pulse">|</span></span>
             </h1>
             
             <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-3xl leading-relaxed">
