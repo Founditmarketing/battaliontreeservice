@@ -1,9 +1,15 @@
 import React from 'react';
 import { Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
+import PageSEO from '../components/PageSEO';
 
 export default function ContactPage() {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-brand-darker relative overflow-hidden">
+      <PageSEO
+        title="Contact Us"
+        description="Request a free estimate from Battalion Tree Service in Kountze, TX. Call (409) 673-5443 or send a message for tree removal, trimming, stump grinding & more."
+        path="/contact"
+      />
       {/* Background styling similar to hero/about */}
       <div className="absolute top-0 right-0 w-1/2 h-screen bg-brand-red/5 blur-[150px] pointer-events-none z-0"></div>
       

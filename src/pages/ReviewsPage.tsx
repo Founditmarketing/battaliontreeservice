@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import CallToAction from '../components/CallToAction';
 import { Quote } from 'lucide-react';
+import PageSEO from '../components/PageSEO';
+import { LOCAL_BUSINESS_ID } from '../data/business';
 
 const reviews = [
   {
@@ -45,6 +47,17 @@ const reviews = [
   }
 ];
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'TreeService',
+  '@id': LOCAL_BUSINESS_ID,
+  review: reviews.map((review) => ({
+    '@type': 'Review',
+    author: { '@type': 'Person', name: review.name },
+    reviewBody: review.text.replace(/^"|"$/g, ''),
+  })),
+};
+
 export default function ReviewsPage() {
   // Scroll to top on mount
   useEffect(() => {
@@ -53,6 +66,12 @@ export default function ReviewsPage() {
 
   return (
     <div className="min-h-screen bg-brand-darker flex flex-col font-sans pt-20">
+      <PageSEO
+        title="Client Reviews"
+        description="Read real customer reviews for Battalion Tree Service, the trusted veteran-owned tree care provider in Kountze, TX since 2019."
+        path="/reviews"
+        jsonLd={jsonLd}
+      />
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 flex items-center overflow-hidden border-b border-white/5">
         {/* Background Image */}

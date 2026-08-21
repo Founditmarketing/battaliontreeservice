@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CallToAction from '../components/CallToAction';
 import { ChevronLeft, ChevronRight, X, ZoomIn } from 'lucide-react';
+import PageSEO from '../components/PageSEO';
 
 const projects = [
   { image: '/battaliontreeimage2.webp' },
@@ -38,6 +39,11 @@ export default function OurWorkPage() {
 
   return (
     <div className="min-h-screen bg-brand-darker flex flex-col font-sans pt-20">
+      <PageSEO
+        title="Our Work"
+        description="See completed tree removal, trimming, and stump grinding projects by Battalion Tree Service in Kountze, TX and the Golden Triangle."
+        path="/our-work"
+      />
       {/* Hero Section (Matching About/Service Pages) */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 flex items-center overflow-hidden border-b border-white/5">
         {/* Background Image */}

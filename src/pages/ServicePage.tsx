@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import CallToAction from '../components/CallToAction';
 import Stats from '../components/Stats';
+import PageSEO from '../components/PageSEO';
+import { LOCAL_BUSINESS_ID, SITE_URL } from '../data/business';
 
 const servicesData = {
   'tree-removal': {
@@ -55,8 +57,26 @@ export default function ServicePage() {
 
   const service = servicesData[serviceId as keyof typeof servicesData];
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: service.title,
+    name: `${service.title} | Battalion Tree Service`,
+    description: service.description,
+    areaServed: 'Golden Triangle, TX',
+    provider: { '@id': LOCAL_BUSINESS_ID },
+    url: `${SITE_URL}/services/${serviceId}`,
+  };
+
   return (
     <div className="min-h-screen bg-brand-darker flex flex-col font-sans pt-20">
+      <PageSEO
+        title={service.title}
+        description={service.description}
+        path={`/services/${serviceId}`}
+        image={`${SITE_URL}${service.image}`}
+        jsonLd={jsonLd}
+      />
       {/* Dynamic Hero Section */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 flex items-center overflow-hidden border-b border-white/5">
         {/* Background Image */}

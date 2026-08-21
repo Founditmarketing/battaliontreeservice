@@ -2,10 +2,16 @@ import React from 'react';
 import About from '../components/About';
 import CallToAction from '../components/CallToAction';
 import Stats from '../components/Stats';
+import PageSEO from '../components/PageSEO';
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-brand-darker flex flex-col font-sans pt-20">
+      <PageSEO
+        title="About Us"
+        description="Veteran-owned and operated since 2019, Battalion Tree Service brings precision and safety to every tree care project in the Golden Triangle, TX."
+        path="/about"
+      />
       {/* Secondary Hero Section (Template) */}
       <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 flex items-center overflow-hidden border-b border-white/5">
         {/* Background Image with Slow Pan */}
